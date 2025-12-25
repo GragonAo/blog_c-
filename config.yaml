@@ -300,7 +300,7 @@ plugins:
     dependencies: []
     config:
       use_spdlog: false
-      log_path: ''
+      log_path: '/home/gragon/work/blog/logs'
       log_format: ''
       log_file: access.log
       log_size_limit: 0
@@ -309,5 +309,10 @@ plugins:
       # show_microseconds: true
       # custom_time_format: ''
       # use_real_ip: false
+  - name: CorsPlugin
+    dependencies: []
+    config:
+      allowed_origin: "*"
+      allow_credentials: "true"
 # custom_config: custom configuration for users. This object can be get by the app().getCustomConfig() method. 
 custom_config: {}

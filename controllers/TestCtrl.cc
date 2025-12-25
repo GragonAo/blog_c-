@@ -8,5 +8,6 @@ void TestCtrl::asyncHandleHttpRequest(const HttpRequestPtr &req,
     resp->setStatusCode(k200OK);
     resp->setContentTypeCode(CT_TEXT_HTML);
     resp->setBody("Hello World!");
+    _userService->sayHello();
     callback(resp);
 }
