@@ -36,15 +36,15 @@ db_clients:
     # filename: Sqlite3 db file name
     # filename: ''
     # host: Server address,localhost by default
-    host: 192.168.31.218
+    host: 127.0.0.1
     # port: Server port, 5432 by default
     port: 5432
     # dbname: Database name
-    dbname: domain_new
+    dbname: blog_v2
     # user: 'postgres' by default
-    user: 'domain_new_user'
+    user: 'gragon'
     # passwd: '' by default
-    passwd: 'domain_new_user_pwd'
+    passwd: 'aoliao123'
     # is_fast: false by default, if it is true, the client is faster but user can't call
     # any synchronous interface of it.
     is_fast: false
@@ -64,28 +64,28 @@ db_clients:
     # For more information, see https://www.postgresql.org/docs/16/libpq-connect.html#LIBPQ-CONNECT-OPTIONS
     # connect_options:
     #   statement_timeout: '1s'
-# redis_clients:
-#     # name: Name of the client,'default' by default
-#   - name: default
-#     # host: Server IP, 127.0.0.1 by default
-#     host: 127.0.0.1
-#     # port: Server port, 6379 by default
-#     port: 6379
-#     # username: '' by default which means 'default' in redis ACL
-#     username: ''
-#     # passwd: '' by default
-#     passwd: ''
-#     # db index: 0 by default
-#     db: 0
-#     # is_fast: false by default, if it is true, the client is faster but user can't call
-#     # any synchronous interface of it.
-#     is_fast: false
-#     # number_of_connections: 1 by default, if the 'is_fast' is true, the number is the number of  
-#     # connections per IO thread, otherwise it is the total number of all connections.  
-#     number_of_connections: 1
-#     # timeout: -1.0 by default, in seconds, the timeout for executing a command.
-#     # zero or negative value means no timeout.
-#     timeout: -1
+redis_clients:
+    # name: Name of the client,'default' by default
+  - name: default
+    # host: Server IP, 127.0.0.1 by default
+    host: 127.0.0.1
+    # port: Server port, 6379 by default
+    port: 6379
+    # username: '' by default which means 'default' in redis ACL
+    username: ''
+    # passwd: '' by default
+    passwd: 'aoliao123'
+    # db index: 0 by default
+    db: 0
+    # is_fast: false by default, if it is true, the client is faster but user can't call
+    # any synchronous interface of it.
+    is_fast: false
+    # number_of_connections: 1 by default, if the 'is_fast' is true, the number is the number of  
+    # connections per IO thread, otherwise it is the total number of all connections.  
+    number_of_connections: 1
+    # timeout: -1.0 by default, in seconds, the timeout for executing a command.
+    # zero or negative value means no timeout.
+    timeout: -1
 app:
   # number_of_threads: The number of IO threads, 1 by default, if the value is set to 0, the number of threads
   # is the number of CPU cores
@@ -300,7 +300,7 @@ plugins:
     dependencies: []
     config:
       use_spdlog: false
-      log_path: '/home/gragon/work/blog/logs'
+      log_path: '/var/local/blog_c-/logs'
       log_format: ''
       log_file: access.log
       log_size_limit: 0
@@ -314,5 +314,12 @@ plugins:
     config:
       allowed_origin: "*"
       allow_credentials: "true"
+  - name: MinioPlugin
+    config:
+      endpoint: "127.0.0.1:9000"
+      access_key: "gragon"
+      secret_key: "aoliao123"
+      bucket_name: "blog"
+      use_ssl: false
 # custom_config: custom configuration for users. This object can be get by the app().getCustomConfig() method. 
 custom_config: {}
